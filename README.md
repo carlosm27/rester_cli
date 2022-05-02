@@ -11,7 +11,7 @@ Then, in Rester's folder:
 
 
 
-![image](https://user-images.githubusercontent.com/70811425/166270150-cd1d45b7-97af-4ee2-94b0-f37bfa18a76d.png)
+![image](https://user-images.githubusercontent.com/70811425/166289832-d70d5536-28fa-430e-be62-2b2208feacb6.png)
 
 
 ## GET

@@ -10,7 +10,7 @@ import (
 	"os"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/carlosm27/rester_cli/httpMethods"
+	"github.com/go-resty/resty/v2"
 	"github.com/spf13/cobra"
 )
 
@@ -28,6 +28,7 @@ var rootCmd = &cobra.Command{
 		}
 		survey.AskOne(prompt, &httpMethod)
 
+		client := resty.New()
 		switch httpMethod {
 		case "GET":
 			url := ""
@@ -36,12 +37,12 @@ var rootCmd = &cobra.Command{
 			}
 			survey.AskOne(prompt, &url)
 
-			get, err := httpMethods.Get(url)
+			resp, err := client.R().EnableTrace().Get(url)
 
 			if err != nil {
 				log.Println(err)
 			}
-			fmt.Println(get)
+			fmt.Println(resp)
 
 		case "POST":
 			url := ""
@@ -55,12 +56,13 @@ var rootCmd = &cobra.Command{
 			}
 			survey.AskOne(prompt, &body)
 
-			post, err := httpMethods.Post(url, body)
+			resp, err := client.R().SetBody(body).Post(url)
+
 			if err != nil {
 				log.Println(err)
 			}
 
-			fmt.Println(post)
+			fmt.Println(resp)
 
 		case "PATCH":
 			url := ""
@@ -74,12 +76,13 @@ var rootCmd = &cobra.Command{
 			}
 			survey.AskOne(prompt, &body)
 
-			patch, err := httpMethods.Patch(url, body)
+			resp, err := client.R().SetBody(body).Patch(url)
+
 			if err != nil {
 				log.Println(err)
 			}
 
-			fmt.Println(patch)
+			fmt.Println(resp)
 
 		case "PUT":
 			url := ""
@@ -93,12 +96,13 @@ var rootCmd = &cobra.Command{
 			}
 			survey.AskOne(prompt, &body)
 
-			put, err := httpMethods.Put(url, body)
+			resp, err := client.R().SetBody(body).Put(url)
+
 			if err != nil {
 				log.Println(err)
 			}
 
-			fmt.Println(put)
+			fmt.Println(resp)
 
 		case "DELETE":
 			url := ""
@@ -107,12 +111,12 @@ var rootCmd = &cobra.Command{
 			}
 			survey.AskOne(prompt, &url)
 
-			delete, err := httpMethods.Delete(url)
+			resp, err := client.R().Delete(url)
+
 			if err != nil {
 				log.Println(err)
 			}
-
-			fmt.Println(delete)
+			fmt.Println(resp)
 		}
 
 	},

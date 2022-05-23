@@ -2,12 +2,12 @@
 
 Rester is a CLI tool written in Go, using Cobra, Resty and Survey packages, to make HTTP requests like GET, POST, PUT, PATCH and DELETE
 
-To use Rester CLI, clone this respo:
-`gh repo clone carlosm27/rester_cli`
+To use Rester CLI, clone this respo.
+
 
 Then, in Rester's folder:
 
-`go build github.com/carlosm27/rester_cli`
+`go install github.com/carlosm27/rester_cli`
 
 
 
